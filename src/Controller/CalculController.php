@@ -20,12 +20,18 @@ class CalculController extends AbstractController{
                 $result = $num1 - $num2;
                 break;
             case ":":
+                $operateur = "/";
                 $result = $num1 / $num2;
                 break;
             case "**":
                 $result = $num1 ** $num2;
                 break;
+            case "@":
+                $operateur = "%";
+                $result = $num1 % $num2;
+                break;
             default:
+                $operateur = "WUT";
                 $result = "NaN";
                 break;
         }
