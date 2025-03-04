@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CalculController extends AbstractController{
 
-    #[Route(path:'/calculatrice/{num1}{operateur}{num2}', name: 'app_calcul_calculatrice')]
+    #[Route(path:'/calculatrice/{num1}/{operateur}/{num2}', name: 'app_calcul_calculatrice')]
     public function calculatrice(string $operateur, int $num1, int $num2) {
         switch($operateur){
             case "+":
