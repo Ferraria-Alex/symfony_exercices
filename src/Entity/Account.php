@@ -96,4 +96,8 @@ class Account
 
         return $this;
     }
+
+    public function __tostring(): string{
+        return $this->firstname." ".$this->lastname;
+    }
 }
