@@ -20,8 +20,17 @@ class AccountController extends AbstractController{
 
     #[Route(path: '/allAccounts', name: 'app_account_allAccounts')]
     public function showAllAccounts(){
+        try{
+            $accounts = $this->accountService->getAll();
+            $msg = "Accounts have been found succesfully!";
+            $status = "Success";
+        }catch (\Exception $e){
+            $msg = "Aucun compte n'a ete trouve";
+            $status = "Danger";
+        }
+        $this->addFlash($status, $msg);
         return $this->render('/accounts.html.twig',[
-            'accounts' => $this->accountService->getAll(),
+            'accounts' => $accounts??null,
         ]);
     }
 
@@ -53,4 +62,23 @@ class AccountController extends AbstractController{
             'form' =>$form
         ]);
     }
+
+    
+    #[Route(path: '/accounts/find/{id}', name: 'app_account_accountById')]
+    public function showAccountById(int $id){
+        try{
+            $account = $this->accountService->getById($id);
+            $msg = "Account has been found succesfully!";
+            $status = "Success";
+        }catch (\Exception $e){
+            $msg = "Aucun compte n'a ete trouve";
+            $status = "Danger";
+        }
+        $this->addFlash($status, $msg);
+        return $this->render('/accounts.html.twig',[
+            'accounts' => [$account??new Account()],
+        ]);
+    }
+
+    
 }

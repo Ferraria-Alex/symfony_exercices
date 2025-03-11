@@ -49,4 +49,15 @@ class AccountService
             throw new \Exception("Aucune compte a ete recupere!");
         }
     }
+ 
+    public function getById(int $id)
+    {
+        //Tester si les champs sont tous remplis
+        $account = $this->accountRepository->findOneBy(["id"=>$id]);
+        if ($account) {
+            return $account;
+        } else {
+            throw new \Exception("Aucune compte a ete recupere!");
+        }
+    }
 }
