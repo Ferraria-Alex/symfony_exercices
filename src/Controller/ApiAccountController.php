@@ -40,7 +40,7 @@ class ApiAccountController extends AbstractController{
     }
 
     #[Route('/api/accounts/add', name: 'api_account_add', methods: ['POST'])]
-    public function addAccount(Request $request){
+    public function apiAddAccount(Request $request){
         $request = $request->getContent();
         $account = $this->serializer->deserialize($request, Account::class, 'json');
 
